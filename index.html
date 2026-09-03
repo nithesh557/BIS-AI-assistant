@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIS AI Assistant</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>BIS AI ASSISTANT</h1>
+        <p>AI-powered Assistant for BIS Standards & Services</p>
+    </header>
+
+    <main>
+
+        <section class="hero">
+            <h2>How can we help you?</h2>
+            <p>
+                Get information about BIS standards,
+                certification and services.
+            </p>
+
+            <button>Ask BIS Assistant</button>
+        </section>
+
+        <section class="features">
+
+            <div class="card">
+                <h3>🤖 Conversational AI</h3>
+                <p>
+                    Ask questions about BIS standards
+                    and certification.
+                </p>
+                <button>Ask AI</button>
+            </div>
+
+            <div class="card">
+                <h3>🛣️ BIS Journey Builder</h3>
+                <p>
+                    Get step-by-step guidance for
+                    your BIS journey.
+                </p>
+                <button>Build Journey</button>
+            </div>
+
+            <div class="card">
+                <h3>✅ Verified Sources</h3>
+                <p>
+                    Get answers supported by
+                    verified BIS information.
+                </p>
+                <button>Explore Sources</button>
+            </div>
+
+        </section>
+<section class="chat-section">
+
+    <h2>🤖 BIS AI Assistant</h2>
+
+    <p>
+        Ask questions about BIS standards,
+        certification and services.
+    </p>
+
+    <div class="chat-box">
+
+        <div class="bot-message">
+             <div class="bot-message">
+        Hello! 👋 I'm your BIS AI Assistant.
+        How can I help you?
+    </div>
+<div class="suggested-questions">
+
+    <p>💡 Try asking:</p>
+
+    <button onclick="askQuestion('What is BIS?')">
+        What is BIS?
+    </button>
+
+    <button onclick="askQuestion('How to apply for BIS certification?')">
+        How to apply for certification?
+    </button>
+
+    <button onclick="askQuestion('Is BIS certification compulsory?')">
+        Is certification compulsory?
+    </button>
+
+    <button onclick="askQuestion('I am manufacturing a helmet')">
+        I manufacture a helmet
+    </button>
+
+</div>
+        <div id="chatMessages"></div>
+
+        <div class="input-area">
+            <input 
+                type="text" 
+                id="userInput"
+                placeholder="Ask your BIS question..."
+            >
+
+            <button onclick="sendMessage()">Send</button>
+        </div>
+
+    </div>
+
+</section>
+<!-- BIS Journey Builder -->
+
+<section class="journey-section">
+
+    <h2>🛣️ BIS Journey Builder</h2>
+
+    <p>
+        Follow a simple step-by-step journey
+        for BIS certification and compliance.
+    </p>
+
+    <div class="journey-container">
+
+        <div class="journey-step">
+            <div class="step-number">1</div>
+            <h3>Identify Your Product</h3>
+            <p>Tell us what product you manufacture.</p>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <div class="journey-step">
+            <div class="step-number">2</div>
+            <h3>Find Applicable Standard</h3>
+            <p>Find the relevant Indian Standard for your product.</p>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <div class="journey-step">
+            <div class="step-number">3</div>
+            <h3>Check Requirements</h3>
+            <p>Understand the applicable certification requirements.</p>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <div class="journey-step">
+            <div class="step-number">4</div>
+            <h3>Testing / Assessment</h3>
+            <p>Understand the required testing or assessment.</p>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <div class="journey-step">
+            <div class="step-number">5</div>
+            <h3>Application</h3>
+            <p>Follow the relevant application procedure.</p>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <div class="journey-step">
+            <div class="step-number">6</div>
+            <h3>Certification & Compliance</h3>
+            <p>Maintain the applicable requirements and compliance.</p>
+        </div>
+
+    </div>
+
+</section>
+<!-- Verified Source Guidance -->
+
+<section class="sources-section">
+
+    <h2>📚 Verified BIS Sources</h2>
+
+    <p>
+        Get BIS information supported by verified sources.
+    </p>
+
+    <div class="source-container">
+
+        <div class="source-card">
+            <h3>📋 Indian Standards</h3>
+            <p>
+                Find information about relevant Indian Standards
+                for different products.
+            </p>
+            <a href="https://standards.bis.gov.in/" target="_blank">
+    View Source
+</a>
+        </div>
+
+        <div class="source-card">
+            <h3>🏭 Certification Information</h3>
+            <p>
+                Understand BIS certification and
+                conformity requirements.
+            </p>
+            <a href="https://www.bis.gov.in/certification-process-4/?lang=en" target="_blank">
+    View Source
+</a>
+        </div>
+
+        <div class="source-card">
+            <h3>✅ Compulsory Certification</h3>
+            <p>
+                Check information about mandatory
+                certification requirements.
+            </p>
+            <a href="https://www.bis.gov.in/product-certification/products-under-compulsory-certification/?lang=en" target="_blank">
+    View Source
+</a>
+        </div>
+
+    </div>
+
+</section>
+    </main>
+
+    <footer>
+        <p>© 2026 BIS AI Assistant</p>
+    </footer>
+<script src="bisknowledgeBase.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
