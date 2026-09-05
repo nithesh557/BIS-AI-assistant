@@ -6,26 +6,118 @@
     <title>BIS AI Assistant</title>
 
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-    <header>
-        <h1>BIS AI ASSISTANT</h1>
-        <p>AI-powered Assistant for BIS Standards & Services</p>
-    </header>
+    <header class="main-header">
+
+    <div class="header-content">
+
+        <div class="brand">
+            <div class="bis-logo">
+                BIS
+            </div>
+
+            <div class="brand-text">
+                <h1>BIS AI ASSISTANT</h1>
+                <p>AI-powered Assistant for BIS Standards & Services</p>
+            </div>
+        </div>
+
+        <div class="header-badge">
+            ✦ Smart • Verified • Simple
+        </div>
+
+    </div>
+
+</header>
 
     <main>
 
         <section class="hero">
-            <h2>How can we help you?</h2>
+
+    <div class="hero-content">
+
+        <div class="hero-text">
+
+            <div class="hero-tag">
+                ✦ YOUR SMART GUIDE TO BIS
+            </div>
+
+            <h2>
+                Understand BIS Standards.
+                <span>Get Certified.</span>
+            </h2>
+
             <p>
-                Get information about BIS standards,
-                certification and services.
+                Ask questions, find relevant Indian Standards,
+                understand certification requirements and get
+                step-by-step guidance with our AI-powered assistant.
             </p>
 
-            <button>Ask BIS Assistant</button>
-        </section>
+            <div class="hero-buttons">
+
+                <button class="primary-btn" onclick="
+                    document.querySelector('.chat-section').scrollIntoView({ behavior: 'smooth' });
+                    setTimeout(() => document.getElementById('userInput').focus(), 500);
+                ">
+                    🤖 Ask BIS Assistant
+                </button>
+
+                <button class="secondary-btn" onclick="
+                    document.querySelector('.journey-section').scrollIntoView({ behavior: 'smooth' });
+                ">
+                    Explore BIS Journey →
+                </button>
+
+            </div>
+
+            <div class="trust-points">
+
+                <div>
+                    ✓ Verified BIS Information
+                </div>
+
+                <div>
+                    ✓ Simple Explanations
+                </div>
+
+                <div>
+                    ✓ 24/7 AI Assistance
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-visual">
+
+    <img 
+        src="bis-ai-visual.png" 
+        alt="BIS AI Assistant"
+        class="bis-ai-image"
+    >
+
+</div>
+
+                <div class="ai-status">
+                    <span></span> AI Assistant Online
+                </div>
+
+            </div>
+
+            
+
+        </div>
+
+    </div>
+
+</section>
 
         <section class="features">
 
@@ -35,7 +127,12 @@
                     Ask questions about BIS standards
                     and certification.
                 </p>
-                <button>Ask AI</button>
+                <button onclick="
+    document.querySelector('.chat-section').scrollIntoView({ behavior: 'smooth' });
+    setTimeout(() => document.getElementById('userInput').focus(), 500);
+">
+    🔎 Find My Standard
+</button>
             </div>
 
             <div class="card">
@@ -44,7 +141,9 @@
                     Get step-by-step guidance for
                     your BIS journey.
                 </p>
-                <button>Build Journey</button>
+       <button onclick="document.querySelector('.journey-section').scrollIntoView({ behavior: 'smooth' });">
+    Build Journey
+</button>
             </div>
 
             <div class="card">
@@ -53,7 +152,9 @@
                     Get answers supported by
                     verified BIS information.
                 </p>
-                <button>Explore Sources</button>
+              <button onclick="document.querySelector('.sources-section').scrollIntoView({ behavior: 'smooth' });">
+    Explore Sources
+</button>
             </div>
 
         </section>
@@ -67,30 +168,37 @@
     </p>
 
     <div class="chat-box">
+        <div class="chat-header">
+    <div class="chat-title">
+        🤖 <span>BIS AI Assistant</span>
+    </div>
 
-        <div class="bot-message">
+    <div class="chat-status">
+        <span class="status-dot"></span>
+        Online
+    </div>
+</div>
+
+        
              <div class="bot-message">
         Hello! 👋 I'm your BIS AI Assistant.
         How can I help you?
     </div>
+    
 <div class="suggested-questions">
 
-    <p>💡 Try asking:</p>
+    <p>💡 Suggested Questions</p>
 
     <button onclick="askQuestion('What is BIS?')">
         What is BIS?
     </button>
 
-    <button onclick="askQuestion('How to apply for BIS certification?')">
-        How to apply for certification?
+    <button onclick="askQuestion('What is the IS standard for this product?')">
+        What is the IS standard for this product?
     </button>
 
-    <button onclick="askQuestion('Is BIS certification compulsory?')">
-        Is certification compulsory?
-    </button>
-
-    <button onclick="askQuestion('I am manufacturing a helmet')">
-        I manufacture a helmet
+    <button onclick="askQuestion('How can I get the BIS certificate?')">
+        How can I get the BIS certificate?
     </button>
 
 </div>
@@ -111,14 +219,13 @@
 </section>
 <!-- BIS Journey Builder -->
 
-<section class="journey-section">
+    <section class="journey-section">
 
     <h2>🛣️ BIS Journey Builder</h2>
 
     <p>
         Follow a simple step-by-step journey
-        for BIS certification and compliance.
-    </p>
+        for BIS certification and compliance.</p>
 
     <div class="journey-container">
 
@@ -169,10 +276,19 @@
         </div>
 
     </div>
+   
+
+    <button onclick="
+        document.querySelector('.chat-section').scrollIntoView({ behavior: 'smooth' });
+        setTimeout(() => document.getElementById('userInput').focus(), 500);
+    ">
+        🤖 Ask BIS Assistant
+    </button>
+
+
 
 </section>
 <!-- Verified Source Guidance -->
-
 <section class="sources-section">
 
     <h2>📚 Verified BIS Sources</h2>
@@ -190,8 +306,8 @@
                 for different products.
             </p>
             <a href="https://standards.bis.gov.in/" target="_blank">
-    View Source
-</a>
+                View Source
+            </a>
         </div>
 
         <div class="source-card">
@@ -201,8 +317,8 @@
                 conformity requirements.
             </p>
             <a href="https://www.bis.gov.in/certification-process-4/?lang=en" target="_blank">
-    View Source
-</a>
+                View Source
+            </a>
         </div>
 
         <div class="source-card">
@@ -212,13 +328,14 @@
                 certification requirements.
             </p>
             <a href="https://www.bis.gov.in/product-certification/products-under-compulsory-certification/?lang=en" target="_blank">
-    View Source
-</a>
+                View Source
+            </a>
         </div>
 
     </div>
 
 </section>
+
     </main>
 
     <footer>

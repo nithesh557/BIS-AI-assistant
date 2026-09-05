@@ -116,7 +116,7 @@ function productDetails(product) {
 
         <br><br>
 
-        💡 You can ask me:
+        💡 <strong>You can also ask me:</strong>
 
         <br><br>
 
@@ -239,7 +239,7 @@ function certificationProcess(product) {
 
 function certificationInformation(product) {
 
-    if (!product) {
+if (!product && !lastProduct) { 
 
         return `
 
@@ -268,7 +268,8 @@ function certificationInformation(product) {
     }
 
 
-    if (product.certification) {
+    if ((product || lastProduct)?.certification) {
+         let certProduct = product || lastProduct;
 
         return `
 
@@ -296,7 +297,7 @@ function certificationInformation(product) {
 
             <br><br>
 
-            💡 You can ask:
+            💡<strong>You can also ask me:</strong>
 
             <br>
 
@@ -395,7 +396,6 @@ function sendMessage() {
         return;
     }
 
-
     let chatMessages =
         document.getElementById("chatMessages");
 
@@ -424,26 +424,18 @@ function sendMessage() {
     let product = findProduct(message);
 
 
-    // Remember product
+   // Remember product
 
-    if (product !== null) {
+if (product === null) {
 
-        lastProduct = product;
+    // Use previously mentioned product
+    product = lastProduct;
 
-    }
+} else {
 
-
-    // If referring to previous product
-
-    if (
-        product === null &&
-        refersToPreviousProduct(message) &&
-        lastProduct !== null
-    ) {
-
-        product = lastProduct;
-
-    }
+    // Remember newly detected product
+    lastProduct = product;
+}
 
 
     let response = "";
@@ -528,28 +520,118 @@ function sendMessage() {
 
 
     // ==========================================
-    // 3. CERTIFICATE PROCESS
-    // ==========================================
+// 3. CERTIFICATE PROCESS
+// ==========================================
 
-    else if (
+else if (
+    text.includes("how to get certificate") ||
+    text.includes("how can i get certificate") ||
+    text.includes("how to get bis certificate") ||
+    text.includes("how can i get bis certificate") ||
+    text.includes("certificate process") ||
+    text.includes("certification process") ||
+    text.includes("how to apply for certification") ||
+    text.includes("how to apply for bis") ||
+    text.includes("process to get certificate") ||
+    text.includes("process for certification") ||
+    text.includes("how can i get") ||
+    text.includes("how do i get") ||
+    text.includes("how i get") ||
+    text.includes("how to get") ||
+    text.includes("steps to get bis") ||
+    text.includes("give me the steps") ||
+    text.includes("what are the steps")
+) {
+    response = certificationProcess(product);
+}
 
-        text.includes("how to get certificate") ||
-        text.includes("how can i get certificate") ||
-        text.includes("how to get bis certificate") ||
-        text.includes("how can i get bis certificate") ||
-        text.includes("certificate process") ||
-        text.includes("certification process") ||
-        text.includes("how to apply for certification") ||
-        text.includes("how to apply for bis") ||
-        text.includes("how can i apply") ||
-        text.includes("process to get certificate") ||
-        text.includes("process for certification")
 
-    ) {
+// ==========================================
+// 3.5. TESTING REQUIREMENTS
+// ==========================================
 
-        response = certificationProcess(product);
+else if (
+    text.includes("what testing") ||
+    text.includes("which testing") ||
+    text.includes("testing required") ||
+    text.includes("tests required") ||
+    text.includes("what tests") ||
+    text.includes("which tests") ||
+    text.includes("testing is required")
+) {
+
+    if (product !== null) {
+
+        response = `
+
+            <strong>🧪 Testing Requirements</strong>
+
+            <br><br>
+
+            <strong>Product:</strong>
+            ${product.title}
+
+            <br><br>
+
+            <strong>IS Standard:</strong>
+            ${product.standard}
+
+            <br><br>
+
+            The required testing depends on the applicable
+            Indian Standard, product type and BIS
+            certification requirements.
+
+            <br><br>
+
+            Testing should be carried out according to
+            the applicable BIS standard and prescribed
+            requirements.
+
+            <br><br>
+
+            📚 <strong>Verified Source:</strong>
+            BIS Standards / Know Your Standard
+
+        `;
 
     }
+
+    else {
+
+        response = `
+
+            <strong>🧪 Testing Requirements</strong>
+
+            <br><br>
+
+            Please tell me the product name first.
+
+            <br><br>
+
+            Example:
+
+            <br>
+
+            <strong>
+            I manufacture ceramic tiles
+            </strong>
+
+            <br><br>
+
+            Then ask:
+
+            <br>
+
+            <strong>
+            What testing is required for this product?
+            </strong>
+
+        `;
+
+    }
+
+}
 
 
     // ==========================================
