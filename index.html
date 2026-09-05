@@ -167,7 +167,7 @@
         certification and services.
     </p>
 
-    <div class="chat-box">
+   <div class="chat-box" id="chatbot"></div>
         <div class="chat-header">
     <div class="chat-title">
         🤖 <span>BIS AI Assistant</span>
@@ -304,8 +304,13 @@
                 application and status-related issues.
             </p>
 
-           <button onclick="showTroubleshooting()">
-    Get Troubleshooting Help →
+           <button onclick="
+    document.getElementById('chatbot').scrollIntoView({behavior:'smooth'});
+    setTimeout(() => {
+        document.getElementById('userInput').focus();
+    }, 500);
+">
+    💬 Ask BIS Assistant →
 </button>
 
         </div>
@@ -342,17 +347,14 @@
             </div>
 
 
-            <div class="problem-item"
-                 onclick="askQuestion('What does an application clarification mean?')">
-
-                <span>📋</span>
-
-                <div>
-                    <strong>Clarification Raised</strong>
-                    <small>Don't know what information to provide</small>
-                </div>
-
-            </div>
+          <div class="problem-item"
+     onclick="askQuestion('Is code invalid')">
+    <span>🔢</span>
+    <div>
+        <strong>Invalid IS Code</strong>
+        <small>IS code validation issue</small>
+    </div>
+</div>
 
 
             <div class="problem-item"
