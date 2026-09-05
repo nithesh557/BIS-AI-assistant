@@ -1997,3 +1997,163 @@ button:active {
     margin-top: 14px;
     margin-bottom: 14px;
 }
+/* ==========================================
+   BIS PORTAL SUPPORT
+   ========================================== */
+
+.portal-support-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 70px 30px;
+}
+
+.portal-support-content {
+    background: linear-gradient(135deg, #eef7ff, #ffffff);
+    border: 1px solid #d7e9f8;
+    border-left: 5px solid #0b63a8;
+    border-radius: 18px;
+    padding: 45px 50px;
+    box-shadow: 0 8px 25px rgba(0, 70, 120, 0.08);
+}
+
+.portal-support-text h2 {
+    color: #123b63;
+    font-size: 30px;
+    margin-bottom: 12px;
+}
+
+.portal-support-text h3 {
+    color: #173f63;
+    font-size: 21px;
+    margin-bottom: 12px;
+}
+
+.portal-support-text p {
+    color: #536b80;
+    font-size: 16px;
+    line-height: 1.7;
+    max-width: 750px;
+    margin-bottom: 25px;
+}
+
+.portal-support-text button {
+    background: #123f70;
+    color: white;
+    border: none;
+    padding: 13px 22px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.portal-support-text button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(18, 63, 112, 0.2);
+}
+
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+    .portal-support-section {
+        padding: 45px 18px;
+    }
+
+    .portal-support-content {
+        padding: 30px 22px;
+    }
+
+    .portal-support-text h2 {
+        font-size: 24px;
+    }
+
+    .portal-support-text h3 {
+        font-size: 18px;
+    }
+
+    .portal-support-text p {
+        font-size: 14px;
+    }
+
+}
+/* BIS PORTAL SUPPORT - TWO COLUMN */
+
+.portal-support-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 45px;
+    align-items: center;
+}
+
+.common-problems {
+    background: #ffffff;
+    border: 1px solid #dbeaf5;
+    border-radius: 14px;
+    padding: 25px;
+}
+
+.common-problems h3 {
+    color: #173f63;
+    margin-bottom: 18px;
+}
+
+.problem-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px;
+    margin-bottom: 10px;
+    background: #f7fbff;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.problem-item:hover {
+    transform: translateX(4px);
+    background: #eef7ff;
+}
+
+.problem-item span {
+    font-size: 20px;
+}
+
+.problem-item strong {
+    display: block;
+    color: #173f63;
+    font-size: 14px;
+}
+
+.problem-item small {
+    display: block;
+    color: #6b7f91;
+    font-size: 12px;
+    margin-top: 3px;
+}
+
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+    .portal-support-content {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+}
+.common-problems {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: 0.5s ease;
+}
+
+.common-problems.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}

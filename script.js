@@ -34,24 +34,30 @@ function findProduct(message) {
 
         let score = 0;
 
-        // Exact product name
-        let productName = normalizeText(item.product);
+        let productName =
+            normalizeText(item.product);
 
+        // Exact product name
         if (text.includes(productName)) {
-            score = 1000 + productName.length;
+
+            score =
+                1000 + productName.length;
+
         }
 
         // Keywords
         for (let keyword of item.keywords) {
 
-            let key = normalizeText(keyword);
+            let key =
+                normalizeText(keyword);
 
             if (text.includes(key)) {
 
-                // Longer keyword = more specific match
-                let keywordScore = 100 + key.length;
+                let keywordScore =
+                    100 + key.length;
 
-                score = Math.max(score, keywordScore);
+                score =
+                    Math.max(score, keywordScore);
             }
         }
 
@@ -73,7 +79,8 @@ function findProduct(message) {
 
 function refersToPreviousProduct(message) {
 
-    let text = normalizeText(message);
+    let text =
+        normalizeText(message);
 
     let references = [
 
@@ -90,7 +97,9 @@ function refersToPreviousProduct(message) {
 
     ];
 
-    return references.some(word => text.includes(word));
+    return references.some(word =>
+        text.includes(word)
+    );
 }
 
 
@@ -123,6 +132,7 @@ function productDetails(product) {
         • Is BIS certification required?<br>
         • How can I get BIS certification?<br>
         • What is the certification process?<br>
+        • What testing is required?<br>
         • How long does it take?<br>
         • What is the applicable scheme?
 
@@ -164,8 +174,8 @@ function certificationProcess(product) {
 
         <br>
 
-        First, identify the Indian Standard applicable
-        to your product.
+        First, identify the Indian Standard
+        applicable to your product.
 
         <br><br>
 
@@ -173,9 +183,10 @@ function certificationProcess(product) {
 
         <br>
 
-        Make sure the required manufacturing facilities,
-        quality-control arrangements and testing facilities
-        are available as applicable.
+        Make sure the required manufacturing
+        facilities, quality-control arrangements
+        and testing facilities are available
+        as applicable.
 
         <br><br>
 
@@ -183,9 +194,9 @@ function certificationProcess(product) {
 
         <br>
 
-        The required product samples have to undergo
-        applicable testing according to the relevant
-        standard and BIS requirements.
+        The required product samples have to
+        undergo applicable testing according to
+        the relevant standard and BIS requirements.
 
         <br><br>
 
@@ -193,8 +204,8 @@ function certificationProcess(product) {
 
         <br>
 
-        Submit the applicable BIS application through
-        the online BIS application process.
+        Submit the applicable BIS application
+        through the online BIS application process.
 
         <br><br>
 
@@ -203,8 +214,8 @@ function certificationProcess(product) {
         <br>
 
         For applicable Scheme-I / ISI Mark cases,
-        BIS assessment or factory inspection may be
-        carried out.
+        BIS assessment or factory inspection may
+        be carried out.
 
         <br><br>
 
@@ -212,18 +223,20 @@ function certificationProcess(product) {
 
         <br>
 
-        BIS reviews the application, test results and
-        applicable assessment requirements.
+        BIS reviews the application, test results
+        and applicable assessment requirements.
 
         <br><br>
 
         If the applicable requirements are satisfied,
-        the BIS licence / certification process can be
-        completed.
+        the BIS licence / certification process
+        can be completed.
 
         <br><br>
 
         ⚠️ <strong>Important:</strong>
+
+        <br>
 
         Exact requirements depend on the product,
         applicable scheme and Government Quality
@@ -239,7 +252,10 @@ function certificationProcess(product) {
 
 function certificationInformation(product) {
 
-if (!product && !lastProduct) { 
+    let certProduct =
+        product || lastProduct;
+
+    if (!certProduct) {
 
         return `
 
@@ -247,8 +263,8 @@ if (!product && !lastProduct) {
 
             <br><br>
 
-            BIS certification requirements depend on
-            the product and applicable regulations.
+            BIS certification requirements depend
+            on the product and applicable regulations.
 
             <br><br>
 
@@ -268,8 +284,7 @@ if (!product && !lastProduct) {
     }
 
 
-    if ((product || lastProduct)?.certification) {
-         let certProduct = product || lastProduct;
+    if (certProduct.certification) {
 
         return `
 
@@ -278,35 +293,33 @@ if (!product && !lastProduct) {
             <br><br>
 
             <strong>Product:</strong>
-            ${product.title}
+            ${certProduct.title}
 
             <br><br>
 
             <strong>IS Standard:</strong>
-            ${product.standard}
+            ${certProduct.standard}
 
             <br><br>
 
             <strong>Certification:</strong>
-            ${product.certification}
+            ${certProduct.certification}
 
             <br><br>
 
             <strong>Scheme:</strong>
-            ${product.scheme || "Refer to applicable BIS requirements"}
+            ${certProduct.scheme ||
+            "Refer to applicable BIS requirements"}
 
             <br><br>
 
-            💡<strong>You can also ask me:</strong>
+            💡 <strong>You can also ask me:</strong>
 
-            <br>
+            <br><br>
 
-            <strong>
             How can I get the BIS certificate?
-            </strong>
 
         `;
-
     }
 
 
@@ -317,31 +330,32 @@ if (!product && !lastProduct) {
         <br><br>
 
         <strong>Product:</strong>
-        ${product.title}
+        ${certProduct.title}
 
         <br><br>
 
         <strong>IS Standard:</strong>
-        ${product.standard}
+        ${certProduct.standard}
 
         <br><br>
 
         ⚠️ The current knowledge base identifies
         the applicable IS Standard, but it does not
-        automatically establish compulsory certification
-        for every product.
+        automatically establish compulsory
+        certification for every product.
 
         <br><br>
 
-        The compulsory-certification status should be
-        verified against the latest applicable BIS
-        requirements / Government Quality Control Order.
+        The compulsory-certification status should
+        be verified against the latest applicable
+        BIS requirements / Government Quality
+        Control Order.
 
         <br><br>
 
         💡 You can ask:
 
-        <br>
+        <br><br>
 
         <strong>
         How can I get the BIS certificate?
@@ -383,24 +397,531 @@ function certificationTimeline() {
 
 
 // ==========================================
+// BIS PORTAL TROUBLESHOOTER
+// ==========================================
+
+function bisPortalTroubleshooter(text) {
+
+
+    // ==========================================
+    // FILE / UPLOAD ISSUE
+    // ==========================================
+
+    if (
+        text.includes("invalid file") ||
+        text.includes("file format") ||
+        text.includes("upload error")
+    ) {
+
+        return `
+
+            <strong>
+            📄 BIS Portal – File / Upload Issue
+            </strong>
+
+            <br><br>
+
+            The portal may reject a file when it
+            does not match the upload requirements
+            or when the file cannot be read correctly.
+
+            <br><br>
+
+            <strong>What to check:</strong>
+
+            <br><br>
+
+            • Check the file format and size
+            requirements shown on the application page.
+
+            <br>
+
+            • Make sure the file opens normally
+            on your computer.
+
+            <br>
+
+            • If the file appears corrupted,
+            re-save or re-export it and try again.
+
+            <br>
+
+            • If the issue continues, use the
+            official BIS support / complaint route.
+
+            <br><br>
+
+            🔗
+            <a href="https://www.bis.gov.in/?lang=en"
+            target="_blank">
+
+            Official BIS Website
+
+            </a>
+
+        `;
+    }
+
+
+    // ==========================================
+    // PAYMENT ISSUE
+    // ==========================================
+
+    if (
+        text.includes("payment failed") ||
+        text.includes("money deducted") ||
+        text.includes("payment problem") ||
+        text.includes("payment issue")
+    ) {
+
+        return `
+
+            <strong>
+            💳 BIS Portal – Payment Issue
+            </strong>
+
+            <br><br>
+
+            If payment failed but money was deducted,
+            first verify the payment and application
+            status before making another payment.
+
+            <br><br>
+
+            <strong>What to do:</strong>
+
+            <br><br>
+
+            • Check the application / transaction status.
+
+            <br>
+
+            • Keep your application number and
+            transaction details.
+
+            <br>
+
+            • Avoid making a second payment until
+            the first transaction status is confirmed.
+
+            <br>
+
+            • If the issue remains unresolved,
+            contact BIS through the official support
+            or complaint route.
+
+            <br><br>
+
+            🔗
+            <a href="https://www.bis.gov.in/directory/enquiry/?lang=en"
+            target="_blank">
+
+            BIS Enquiry
+
+            </a>
+
+        `;
+    }
+
+
+    // ==========================================
+    // BLANK PAGE
+    // ==========================================
+
+    if (
+        text.includes("blank page") ||
+        text.includes("page went blank") ||
+        text.includes("submit but") ||
+        text.includes("submit button")
+    ) {
+
+        return `
+
+            <strong>
+            🖥️ BIS Portal – Blank Page After Submit
+            </strong>
+
+            <br><br>
+
+            A blank page by itself does not confirm
+            that your application was successfully
+            submitted.
+
+            <br><br>
+
+            <strong>Check these first:</strong>
+
+            <br><br>
+
+            • Check your application dashboard
+            / status.
+
+            <br>
+
+            • Look for an application or transaction
+            reference number.
+
+            <br>
+
+            • Check whether BIS sent any email
+            or notification.
+
+            <br>
+
+            • Avoid submitting the same application
+            again until the status is confirmed.
+
+            <br><br>
+
+            If the status is still unclear, use the
+            official BIS support route.
+
+        `;
+    }
+
+
+    // ==========================================
+    // IS CODE INVALID
+    // ==========================================
+
+    if (
+        text.includes("is code invalid") ||
+        text.includes("standard code invalid") ||
+        text.includes("invalid is code")
+    ) {
+
+        return `
+
+            <strong>
+            🔎 BIS Portal – IS Code Validation Issue
+            </strong>
+
+            <br><br>
+
+            First verify that you have entered the
+            correct Indian Standard number for
+            the product.
+
+            <br><br>
+
+            <strong>What to check:</strong>
+
+            <br><br>
+
+            • Verify the IS number from official
+            BIS information.
+
+            <br>
+
+            • Check that the standard matches
+            your product.
+
+            <br>
+
+            • Enter the number in the format
+            requested by the portal.
+
+            <br>
+
+            • If the correct standard is still
+            rejected, contact BIS support.
+
+            <br><br>
+
+            🔗
+            <a href="https://standards.bis.gov.in/"
+            target="_blank">
+
+            BIS Standards Portal
+
+            </a>
+
+        `;
+    }
+
+
+    // ==========================================
+    // CLARIFICATION / SCRUTINY
+    // ==========================================
+
+    if (
+        text.includes("clarification raised") ||
+        text.includes("scrutiny") ||
+        text.includes("clarification")
+    ) {
+
+        return `
+
+            <strong>
+            📋 BIS Application – Clarification / Scrutiny
+            </strong>
+
+            <br><br>
+
+            A clarification or scrutiny observation
+            generally means that BIS requires
+            additional information, documents,
+            or corrective action for the application.
+
+            <br><br>
+
+            <strong>What to do:</strong>
+
+            <br><br>
+
+            • Read the exact observation shown
+            in your application.
+
+            <br>
+
+            • Identify the document or information
+            requested.
+
+            <br>
+
+            • Provide the required clarification
+            through the application workflow.
+
+            <br>
+
+            • Keep a copy of the submitted
+            clarification for your records.
+
+            <br><br>
+
+            The exact requirement can depend on
+            the applicable BIS scheme.
+
+        `;
+    }
+
+
+    // ==========================================
+    // APPLICATION STATUS / DELAY
+    // ==========================================
+
+    if (
+        text.includes("status stuck") ||
+        text.includes("application delay") ||
+        text.includes("status not changed") ||
+        text.includes("application status")
+    ) {
+
+        return `
+
+            <strong>
+            ⏳ BIS Application – Status / Delay
+            </strong>
+
+            <br><br>
+
+            If your application status has not changed
+            for some time, first check whether any
+            clarification, document, fee, testing,
+            or other action is pending.
+
+            <br><br>
+
+            <strong>What to do:</strong>
+
+            <br><br>
+
+            • Note your application number.
+
+            <br>
+
+            • Check the latest status shown
+            on the portal.
+
+            <br>
+
+            • Check whether BIS has requested
+            any additional information.
+
+            <br>
+
+            • If there is no clear update, contact
+            the appropriate BIS office / enquiry channel.
+
+            <br><br>
+
+            🔗
+            <a href="https://www.bis.gov.in/directory/enquiry/?lang=en"
+            target="_blank">
+
+            BIS Enquiry
+
+            </a>
+
+        `;
+    }
+
+
+    // ==========================================
+    // COMPLAINT / ESCALATION
+    // ==========================================
+
+    if (
+        text.includes("complaint") ||
+        text.includes("escalate") ||
+        text.includes("how can i complain")
+    ) {
+
+        return `
+
+            <strong>
+            📞 BIS Complaint / Escalation
+            </strong>
+
+            <br><br>
+
+            BIS provides official channels for
+            registering complaints and getting
+            assistance.
+
+            <br><br>
+
+            <strong>You can use:</strong>
+
+            <br><br>
+
+            • BIS CARE / Standard Promotion Portal
+
+            <br>
+
+            • Nearest BIS Regional or Branch Office
+
+            <br>
+
+            • Email: complaints@bis.gov.in
+
+            <br>
+
+            • BIS enquiry contact
+
+            <br><br>
+
+            📞 General complaint contact:
+            +91-11-23235069
+
+            <br><br>
+
+            🔗
+            <a href="https://www.bis.gov.in/consumer-overview/online-complaint-registration/?lang=en"
+            target="_blank">
+
+            Online Complaint Registration
+
+            </a>
+
+        `;
+    }
+
+
+    return null;
+}
+
+
+// ==========================================
+// TROUBLESHOOTER MENU
+// ==========================================
+
+function troubleshooterMenu() {
+
+    return `
+
+        <strong>
+        🛠️ BIS Portal Troubleshooter
+        </strong>
+
+        <br><br>
+
+        I can help you understand common
+        BIS portal issues.
+
+        <br><br>
+
+        <strong>
+        📄 Document / File Issue
+        </strong>
+
+        <br>
+
+        • Why am I getting an invalid file
+        format error?
+
+        <br><br>
+
+        <strong>
+        💳 Payment Issue
+        </strong>
+
+        <br>
+
+        • My payment failed but money was
+        deducted. What should I do?
+
+        <br><br>
+
+        <strong>
+        📋 Application Issue
+        </strong>
+
+        <br>
+
+        • What does an application
+        clarification mean?
+
+        <br><br>
+
+        <strong>
+        ⏳ Status / Delay
+        </strong>
+
+        <br>
+
+        • My application status is stuck.
+        What should I do?
+
+        <br><br>
+
+        <strong>
+        📞 Complaint
+        </strong>
+
+        <br>
+
+        • How can I check or escalate
+        my complaint?
+
+    `;
+}
+
+
+// ==========================================
 // SEND MESSAGE
 // ==========================================
 
 function sendMessage() {
 
-    let input = document.getElementById("userInput");
+    let input =
+        document.getElementById("userInput");
 
-    let message = input.value.trim();
+    let message =
+        input.value.trim();
 
     if (message === "") {
         return;
     }
 
+
     let chatMessages =
         document.getElementById("chatMessages");
 
 
-    // Show user message
+    // ==========================================
+    // SHOW USER MESSAGE
+    // ==========================================
 
     chatMessages.innerHTML += `
 
@@ -414,28 +935,34 @@ function sendMessage() {
     input.value = "";
 
 
-    let text = normalizeText(message);
+    let text =
+        normalizeText(message);
 
 
     // ==========================================
     // FIND PRODUCT
     // ==========================================
 
-    let product = findProduct(message);
+    let product =
+        findProduct(message);
 
 
-   // Remember product
+    // ==========================================
+    // PRODUCT MEMORY
+    // ==========================================
 
-if (product === null) {
+    if (product !== null) {
 
-    // Use previously mentioned product
-    product = lastProduct;
+        lastProduct = product;
 
-} else {
+    }
+    else if (
+        refersToPreviousProduct(message)
+    ) {
 
-    // Remember newly detected product
-    lastProduct = product;
-}
+        product = lastProduct;
+
+    }
 
 
     let response = "";
@@ -461,20 +988,23 @@ if (product === null) {
 
             <br><br>
 
-            I'm your <strong>BIS AI Assistant</strong>.
+            I'm your
+            <strong>BIS AI Assistant</strong>.
 
             <br><br>
 
             You can ask me about:
 
-            <br>
+            <br><br>
 
             📋 Indian Standards<br>
             🏭 BIS Certification<br>
             🔎 Product Standards<br>
             📝 Certification Process<br>
+            🧪 Testing Requirements<br>
             ⏱️ Processing Time<br>
-            📚 BIS Services
+            📚 BIS Services<br>
+            🛠️ BIS Portal Troubleshooting
 
         `;
 
@@ -482,7 +1012,54 @@ if (product === null) {
 
 
     // ==========================================
-    // 2. WHAT IS BIS?
+    // 2. PORTAL TROUBLESHOOTER
+    // ==========================================
+
+    else if (
+
+        text.includes("troubleshooter") ||
+        text.includes("portal issue") ||
+        text.includes("portal problem") ||
+        text.includes("website issue") ||
+        text.includes("website problem") ||
+        text.includes("invalid file") ||
+        text.includes("file format") ||
+        text.includes("upload error") ||
+        text.includes("payment failed") ||
+        text.includes("money deducted") ||
+        text.includes("payment problem") ||
+        text.includes("payment issue") ||
+        text.includes("blank page") ||
+        text.includes("page went blank") ||
+        text.includes("is code invalid") ||
+        text.includes("invalid is code") ||
+        text.includes("standard code invalid") ||
+        text.includes("clarification raised") ||
+        text.includes("scrutiny") ||
+        text.includes("application delay") ||
+        text.includes("status stuck") ||
+        text.includes("status not changed") ||
+        text.includes("application status") ||
+        text.includes("complaint") ||
+        text.includes("escalate")
+
+    ) {
+
+        response =
+            bisPortalTroubleshooter(text);
+
+        if (!response) {
+
+            response =
+                troubleshooterMenu();
+
+        }
+
+    }
+
+
+    // ==========================================
+    // 3. WHAT IS BIS?
     // ==========================================
 
     else if (
@@ -502,7 +1079,9 @@ if (product === null) {
             <br><br>
 
             BIS stands for
-            <strong>Bureau of Indian Standards</strong>.
+            <strong>
+            Bureau of Indian Standards
+            </strong>.
 
             <br><br>
 
@@ -510,9 +1089,9 @@ if (product === null) {
 
             <br><br>
 
-            It develops Indian Standards and provides
-            certification and conformity assessment
-            services.
+            It develops Indian Standards and
+            provides certification and conformity
+            assessment services.
 
         `;
 
@@ -520,122 +1099,130 @@ if (product === null) {
 
 
     // ==========================================
-// 3. CERTIFICATE PROCESS
-// ==========================================
+    // 4. CERTIFICATE PROCESS
+    // ==========================================
 
-else if (
-    text.includes("how to get certificate") ||
-    text.includes("how can i get certificate") ||
-    text.includes("how to get bis certificate") ||
-    text.includes("how can i get bis certificate") ||
-    text.includes("certificate process") ||
-    text.includes("certification process") ||
-    text.includes("how to apply for certification") ||
-    text.includes("how to apply for bis") ||
-    text.includes("process to get certificate") ||
-    text.includes("process for certification") ||
-    text.includes("how can i get") ||
-    text.includes("how do i get") ||
-    text.includes("how i get") ||
-    text.includes("how to get") ||
-    text.includes("steps to get bis") ||
-    text.includes("give me the steps") ||
-    text.includes("what are the steps")
-) {
-    response = certificationProcess(product);
-}
+    else if (
 
+        text.includes("how to get certificate") ||
+        text.includes("how can i get certificate") ||
+        text.includes("how can i get certification") ||
+        text.includes("how to get bis certificate") ||
+        text.includes("how can i get bis certificate") ||
+        text.includes("certificate process") ||
+        text.includes("certification process") ||
+        text.includes("how to apply for certification") ||
+        text.includes("how to apply for bis") ||
+        text.includes("process to get certificate") ||
+        text.includes("process for certification") ||
+        text.includes("steps to get bis") ||
+        text.includes("give me the steps") ||
+        text.includes("what are the steps")
 
-// ==========================================
-// 3.5. TESTING REQUIREMENTS
-// ==========================================
+    ) {
 
-else if (
-    text.includes("what testing") ||
-    text.includes("which testing") ||
-    text.includes("testing required") ||
-    text.includes("tests required") ||
-    text.includes("what tests") ||
-    text.includes("which tests") ||
-    text.includes("testing is required")
-) {
-
-    if (product !== null) {
-
-        response = `
-
-            <strong>🧪 Testing Requirements</strong>
-
-            <br><br>
-
-            <strong>Product:</strong>
-            ${product.title}
-
-            <br><br>
-
-            <strong>IS Standard:</strong>
-            ${product.standard}
-
-            <br><br>
-
-            The required testing depends on the applicable
-            Indian Standard, product type and BIS
-            certification requirements.
-
-            <br><br>
-
-            Testing should be carried out according to
-            the applicable BIS standard and prescribed
-            requirements.
-
-            <br><br>
-
-            📚 <strong>Verified Source:</strong>
-            BIS Standards / Know Your Standard
-
-        `;
+        response =
+            certificationProcess(null);
 
     }
-
-    else {
-
-        response = `
-
-            <strong>🧪 Testing Requirements</strong>
-
-            <br><br>
-
-            Please tell me the product name first.
-
-            <br><br>
-
-            Example:
-
-            <br>
-
-            <strong>
-            I manufacture ceramic tiles
-            </strong>
-
-            <br><br>
-
-            Then ask:
-
-            <br>
-
-            <strong>
-            What testing is required for this product?
-            </strong>
-
-        `;
-
-    }
-
-}
 
 
     // ==========================================
-    // 4. CERTIFICATION REQUIRED?
+    // 5. TESTING REQUIREMENTS
+    // ==========================================
+
+    else if (
+
+        text.includes("what testing") ||
+        text.includes("which testing") ||
+        text.includes("testing required") ||
+        text.includes("tests required") ||
+        text.includes("what tests") ||
+        text.includes("which tests") ||
+        text.includes("testing is required")
+
+    ) {
+
+        if (product !== null) {
+
+            response = `
+
+                <strong>
+                🧪 Testing Requirements
+                </strong>
+
+                <br><br>
+
+                <strong>Product:</strong>
+                ${product.title}
+
+                <br><br>
+
+                <strong>IS Standard:</strong>
+                ${product.standard}
+
+                <br><br>
+
+                The required testing depends on
+                the applicable Indian Standard,
+                product type and BIS certification
+                requirements.
+
+                <br><br>
+
+                Testing should be carried out according
+                to the applicable BIS standard and
+                prescribed requirements.
+
+                <br><br>
+
+                📚 <strong>Verified Source:</strong>
+                BIS Standards / Know Your Standard
+
+            `;
+
+        }
+        else {
+
+            response = `
+
+                <strong>
+                🧪 Testing Requirements
+                </strong>
+
+                <br><br>
+
+                Please tell me the product name first.
+
+                <br><br>
+
+                Example:
+
+                <br><br>
+
+                <strong>
+                I manufacture ceramic tiles
+                </strong>
+
+                <br><br>
+
+                Then ask:
+
+                <br><br>
+
+                <strong>
+                What testing is required for this product?
+                </strong>
+
+            `;
+
+        }
+
+    }
+
+
+    // ==========================================
+    // 6. CERTIFICATION REQUIRED?
     // ==========================================
 
     else if (
@@ -651,13 +1238,14 @@ else if (
 
     ) {
 
-        response = certificationInformation(product);
+        response =
+            certificationInformation(product);
 
     }
 
 
     // ==========================================
-    // 5. STANDARD QUESTION
+    // 7. STANDARD QUESTION
     // ==========================================
 
     else if (
@@ -678,7 +1266,9 @@ else if (
 
             response = `
 
-                <strong>📋 Applicable BIS Standard</strong>
+                <strong>
+                📋 Applicable BIS Standard
+                </strong>
 
                 <br><br>
 
@@ -698,13 +1288,12 @@ else if (
                 <br><br>
 
                 ⚠️ Verify the latest official BIS
-                requirements before making a regulatory
-                or certification decision.
+                requirements before making a
+                regulatory or certification decision.
 
             `;
 
         }
-
         else {
 
             response = `
@@ -715,7 +1304,7 @@ else if (
 
                 Example:
 
-                <br>
+                <br><br>
 
                 <strong>
                 What is the IS standard for plywood?
@@ -729,7 +1318,7 @@ else if (
 
 
     // ==========================================
-    // 6. APPLY QUESTION
+    // 8. APPLY QUESTION
     // ==========================================
 
     else if (
@@ -738,18 +1327,21 @@ else if (
         text.includes("apply for") ||
         text.includes("application process") ||
         text.includes("how can i get") ||
+        text.includes("how do i get") ||
+        text.includes("how i get") ||
         text.includes("how to get bis") ||
         text.includes("process for bis")
 
     ) {
 
-        response = certificationProcess(product);
+        response =
+            certificationProcess(product);
 
     }
 
 
     // ==========================================
-    // 7. TIMELINE
+    // 9. TIMELINE
     // ==========================================
 
     else if (
@@ -765,13 +1357,14 @@ else if (
 
     ) {
 
-        response = certificationTimeline();
+        response =
+            certificationTimeline();
 
     }
 
 
     // ==========================================
-    // 8. OPTION-2
+    // 10. OPTION-2
     // ==========================================
 
     else if (
@@ -785,26 +1378,30 @@ else if (
 
         response = `
 
-            <strong>⚡ BIS Option-2</strong>
+            <strong>
+            ⚡ BIS Option-2
+            </strong>
 
             <br><br>
 
-            Option-2 refers to the procedure mentioned
-            in the provided BIS source for processing
-            certain product certification applications.
+            Option-2 refers to the procedure
+            mentioned in the provided BIS source
+            for processing certain product
+            certification applications.
 
             <br><br>
 
-            The source states that the measure was
-            introduced for domestic industry, including
-            MSMEs, with the aim of processing licence-grant
-            applications within <strong>30 days</strong>.
+            The source states that the measure
+            was introduced for domestic industry,
+            including MSMEs, with the aim of
+            processing licence-grant applications
+            within <strong>30 days</strong>.
 
             <br><br>
 
-            ⚠️ The provided product list should not be
-            treated as a complete statement of all current
-            BIS certification rules.
+            ⚠️ The provided product list should
+            not be treated as a complete statement
+            of all current BIS certification rules.
 
         `;
 
@@ -812,30 +1409,33 @@ else if (
 
 
     // ==========================================
-    // 9. PRODUCT FOUND
+    // 11. PRODUCT FOUND
     // ==========================================
 
     else if (product !== null) {
 
-        response = productDetails(product);
+        response =
+            productDetails(product);
 
     }
 
 
     // ==========================================
-    // 10. UNKNOWN QUESTION
+    // 12. UNKNOWN QUESTION
     // ==========================================
 
     else {
 
         response = `
 
-            <strong>🤔 I can help with BIS information.</strong>
+            <strong>
+            🤔 I can help with BIS information.
+            </strong>
 
             <br><br>
 
-            I couldn't identify the product or BIS topic
-            from your question.
+            I couldn't identify the product or
+            BIS topic from your question.
 
             <br><br>
 
@@ -845,23 +1445,27 @@ else if (
 
             🔹 What is the IS standard for plywood?
 
-            <br>
+            <br><br>
 
             🔹 Is BIS certification required for plywood?
 
-            <br>
+            <br><br>
 
             🔹 How can I get the BIS certificate?
 
-            <br>
+            <br><br>
 
             🔹 What is the certification process?
 
-            <br>
+            <br><br>
+
+            🔹 What testing is required?
+
+            <br><br>
 
             🔹 How long does BIS certification take?
 
-            <br>
+            <br><br>
 
             🔹 What is BIS?
 
@@ -884,8 +1488,36 @@ else if (
 
         `;
 
+
+        // Scroll inside chatbot
         chatMessages.scrollTop =
             chatMessages.scrollHeight;
+
+
+        // Scroll page to latest answer
+        let botMessages =
+            chatMessages.querySelectorAll(
+                ".bot-message"
+            );
+
+
+        let latestBotMessage =
+            botMessages[
+                botMessages.length - 1
+            ];
+
+
+        if (latestBotMessage) {
+
+            latestBotMessage.scrollIntoView({
+
+                behavior: "smooth",
+
+                block: "center"
+
+            });
+
+        }
 
     }, 500);
 
@@ -906,3 +1538,24 @@ function askQuestion(question) {
     sendMessage();
 
 }
+function showTroubleshooting() {
+
+    let problems = document.getElementById("commonProblems");
+
+    problems.classList.add("show");
+
+    setTimeout(() => {
+        problems.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+    }, 100);
+}
+document.getElementById("userInput").addEventListener("keydown", function(event) {
+
+    if (event.key === "Enter") {
+        event.preventDefault();
+        sendMessage();
+    }
+
+});
